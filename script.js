@@ -9,6 +9,7 @@ async function pokemonConsulta(pokemonURL,pokemonName){
 
 
 
+
 async function llenarTarjeta(pokemonName){
 
     let pokemonInfo = document.querySelector('[class="containerInfo"]');
