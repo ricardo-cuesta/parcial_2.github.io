@@ -6,15 +6,11 @@ async function pokemonConsulta(pokemonURL,pokemonName){
         //console.log("respuesta.data",respuesta.data)
         return respuesta.data;   
 };
-//let pokemonInfo = document.querySelector('[class="containerInfo"]');
-
-//const pokemonAll = await pokemonConsulta('https://pokeapi.co/api/v2/pokemon/');
-
-
 
 
 
 async function llenarTarjeta(pokemonName){
+
     let pokemonInfo = document.querySelector('[class="containerInfo"]');
 pokemonInfo.style.display = 'block'; //pokemonInfo.style.display = 'block';
     const pokemonResults = await pokemonConsulta('https://pokeapi.co/api/v2/pokemon/',pokemonName);
@@ -22,7 +18,16 @@ pokemonInfo.style.display = 'block'; //pokemonInfo.style.display = 'block';
         console.log(pokemonResults);
         console.log(pokemonResults.name);
         console.log(pokemonResults.id);
-        
+        if (pokemonName==''){
+
+            console.log(pokemonResults.name);
+        }else{
+
+            console.log('funciona',pokemonResults.name);
+        }
+
+
+
 
         pokemonInfo.style.display = 'block';        
         const pokemonname = document.querySelector('[class="pokemonName"]');
@@ -55,13 +60,27 @@ pokemonInfo.style.display = 'block'; //pokemonInfo.style.display = 'block';
 };
 
 
-let searchButton = document.querySelector('[class="buttonSearch"]');
-searchButton.addEventListener("click",()=>{
+let BuscarPoquemon = document.querySelector('[class="buttonSearch"]');
+BuscarPoquemon.addEventListener("click",()=>{
     //Captura de los parametros de busqueda
 
     const inputText = document.querySelector('[id="in1"]').value ;
+    if (inputText==''){
+        console.log('no resultado',llenarTarjeta);
+        const pokemonError = document.querySelector('[class="containerError"]');
+        pokemonError.style.display = 'block'; 
+        
+        //pokemonError.innerHTML = pokemonTypeListText;
+    }else{
+        console.log('ver resultado',llenarTarjeta);
+        llenarTarjeta(inputText);
+        const pokemonError = document.querySelector('[class="containerError"]');
+        pokemonError.style.display = 'none'; 
 
-    llenarTarjeta(inputText);
+        
+    }
+
+    //console.log('ver resultado',llenarTarjeta);
     //llenarTarjeta('rayquaza');
     //llenarTarjeta('cresselia');
     //llenarTarjeta('pikachu');
