@@ -1,27 +1,33 @@
 async function pokemonQuery(pokemonURL,pokemonName){
     let url = pokemonURL + pokemonName;
-    let response ;
-        response = await axios.get(url);
+    let respuesta ;
+        respuesta = await axios.get(url);
         console.log("",)
-        //console.log("response.data",response.data)
-
-
-        return response.data;   
+        //console.log("respuesta.data",respuesta.data)
+        return respuesta.data;   
 };
 let pokemonInfo = document.querySelector('[class="containerInfo"]');
 pokemonInfo.style.display = 'block'; //pokemonInfo.style.display = 'block';
+//const pokemonAll = await pokemonQuery('https://pokeapi.co/api/v2/pokemon/');
+
+
+
 
 
 async function verResults(pokemonName){
     let pokemonInfo = document.querySelector('[class="containerInfo"]');
 
     const pokemonResults = await pokemonQuery('https://pokeapi.co/api/v2/pokemon/',pokemonName);
+
         console.log(pokemonResults);
+        console.log(pokemonResults.name);
+        console.log(pokemonResults.id);
+
         pokemonInfo.style.display = 'block';        
         const pokemonname = document.querySelector('[class="pokemonName"]');
         pokemonname.innerHTML = pokemonResults.name;
         
-        console.log(pokemonResults.id);
+        
         const pokemonImg = document.querySelector('[class="pokemonImg"]');
         pokemonImg.src = pokemonResults.sprites.other["official-artwork"].front_default;
         //console.log(pokemonImg.src);
@@ -51,9 +57,13 @@ async function verResults(pokemonName){
 let searchButton = document.querySelector('[class="buttonSearch"]');
 searchButton.addEventListener("click",()=>{
     //Captura de los parametros de busqueda
+
     const inputText = document.querySelector('[id="in1"]').value ;
 
     verResults(inputText);
-    //console.log('ver resultado',verResults);
+    //verResults('rayquaza');
+    //verResults('cresselia');
+
+    console.log('ver resultado',verResults);
 
 });
