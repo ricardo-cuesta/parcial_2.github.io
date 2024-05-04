@@ -1,4 +1,4 @@
-async function pokemonQuery(pokemonURL,pokemonName){
+async function pokemonConsulta(pokemonURL,pokemonName){
     let url = pokemonURL + pokemonName;
     let respuesta ;
         respuesta = await axios.get(url);
@@ -8,20 +8,21 @@ async function pokemonQuery(pokemonURL,pokemonName){
 };
 let pokemonInfo = document.querySelector('[class="containerInfo"]');
 pokemonInfo.style.display = 'block'; //pokemonInfo.style.display = 'block';
-//const pokemonAll = await pokemonQuery('https://pokeapi.co/api/v2/pokemon/');
+//const pokemonAll = await pokemonConsulta('https://pokeapi.co/api/v2/pokemon/');
 
 
 
 
 
-async function verResults(pokemonName){
+async function llenarTarjeta(pokemonName){
     let pokemonInfo = document.querySelector('[class="containerInfo"]');
 
-    const pokemonResults = await pokemonQuery('https://pokeapi.co/api/v2/pokemon/',pokemonName);
+    const pokemonResults = await pokemonConsulta('https://pokeapi.co/api/v2/pokemon/',pokemonName);
 
         console.log(pokemonResults);
         console.log(pokemonResults.name);
         console.log(pokemonResults.id);
+        
 
         pokemonInfo.style.display = 'block';        
         const pokemonname = document.querySelector('[class="pokemonName"]');
@@ -45,7 +46,7 @@ async function verResults(pokemonName){
         pokemonabilities.innerHTML = pokemonAbilitiesListText;
         
         const pokemonID = pokemonResults.id;
-        const pokemonEXTRAResults = await pokemonQuery('https://pokeapi.co/api/v2/pokemon-species/',pokemonID);
+        const pokemonEXTRAResults = await pokemonConsulta('https://pokeapi.co/api/v2/pokemon-species/',pokemonID);
         const pokemonDescrition = document.querySelector('[class="pokemonDescrition"]');
         //console.log(pokemonDescrition);
         pokemonDescrition.innerHTML = pokemonEXTRAResults.flavor_text_entries[0].flavor_text;
@@ -60,10 +61,11 @@ searchButton.addEventListener("click",()=>{
 
     const inputText = document.querySelector('[id="in1"]').value ;
 
-    verResults(inputText);
-    //verResults('rayquaza');
-    //verResults('cresselia');
+    llenarTarjeta(inputText);
+    //llenarTarjeta('rayquaza');
+    //llenarTarjeta('cresselia');
+    //llenarTarjeta('pikachu');
 
-    console.log('ver resultado',verResults);
+    console.log('ver resultado',llenarTarjeta);
 
 });
