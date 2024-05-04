@@ -6,16 +6,9 @@ async function pokemonConsulta(pokemonURL,pokemonName){
         //console.log("respuesta.data",respuesta.data)
         return respuesta.data;   
 };
-let pokemonInfo = document.querySelector('[class="containerInfo"]');
-pokemonInfo.style.display = 'block'; //pokemonInfo.style.display = 'block';
-//const pokemonAll = await pokemonConsulta('https://pokeapi.co/api/v2/pokemon/');
-
-
-
-
-
 async function llenarTarjeta(pokemonName){
     let pokemonInfo = document.querySelector('[class="containerInfo"]');
+pokemonInfo.style.display = 'block'; //pokemonInfo.style.display = 'block';
 
     const pokemonResults = await pokemonConsulta('https://pokeapi.co/api/v2/pokemon/',pokemonName);
 
